@@ -16,14 +16,21 @@ export const AdminLayoutRoutes: Routes = [
   // { path: '', component: LoginComponent },
   { path: '', component: DashboardComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'iaas', component: IaasComponent },
-  { path: 'create-vm', component: CreateVmComponent },
-  { path: 'item', component: ItemComponent },
+  // { path: 'create-vm', component: CreateVmComponent },
+  // { path: 'item', component: ItemComponent },
   { path: 'dbaas', component: DbaasComponent },
   { path: 'lbaas', component: LbaasComponent },
   { path: 'org-setup', component: OrgSetupComponent },
   // { path: 'on-board-user', component: OnBoardUserComponent },
   { path: 'new-org', component: NewOrgComponent },
+  { 
+    path: 'iaas', component: IaasComponent,
+    children: [
+      { path: 'create-vm', component: CreateVmComponent },
+      { path: 'item', component: ItemComponent },
+    ]
+  },
+
 ];
 
 @NgModule({

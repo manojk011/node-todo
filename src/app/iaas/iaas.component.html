@@ -37,8 +37,9 @@
       
     </mat-table>
 
-    <button mat-raised-button routerLink="/create-vm">Create VM</button>
-    <button mat-raised-button routerLink="/item">Create TShirt</button>
+    <button mat-raised-button [routerLink]="['create-vm']">Create VM</button>
+    <button mat-raised-button [routerLink]="['item']">Create TShirt</button>
 
 </div>
 
+<router-outlet></router-outlet>
