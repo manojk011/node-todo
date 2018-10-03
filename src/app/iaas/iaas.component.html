@@ -1,0 +1,44 @@
+<!-- <item></item> -->
+
+<!-- <h1>Infrastructure as a Service(IaaS)</h1>
+<div>
+    <p>IaaS API provides a RESTful service to perform Life Cycle operations on Virtual Machines which can be integrated as part of DevOps pipe line</p>
+</div> -->
+
+<!-- <app-create-vm></app-create-vm> -->
+
+<div>
+    <h1>Virtual Machines</h1>
+      
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+    <ng-container matColumnDef="VM Name">
+        <mat-header-cell *matHeaderCellDef> VM Name</mat-header-cell>
+        <mat-cell *matCellDef="let mockdata"> {{mockdata.name}} </mat-cell>
+    </ng-container>
+      
+    <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let mockdata"> {{mockdata.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Created By">
+        <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
+        <mat-cell *matCellDef="let mockdata"> {{mockdata.by}} </mat-cell>
+    </ng-container>
+      
+    <ng-container matColumnDef="Created Date">
+        <mat-header-cell *matHeaderCellDef> Created Date </mat-header-cell>
+        <mat-cell *matCellDef="let mockdata"> {{mockdata.date}} </mat-cell>
+    </ng-container>
+      
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      
+    </mat-table>
+
+    <button mat-raised-button routerLink="/create-vm">Create VM</button>
+    <button mat-raised-button routerLink="/item">Create TShirt</button>
+
+</div>
+

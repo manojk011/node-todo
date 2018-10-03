@@ -1,0 +1,41 @@
+table {
+    border-collapse: collapse;
+
+} 
+
+td {
+    border: 1px solid black;
+} 
+  
+h1, h2 {
+    text-align: center;
+}
+
+mat-table {
+    width: 80%;
+    // margin-top: 80px;
+    // margin-left: auto;
+    // margin-right: auto;
+}
+
+button {
+    margin-top: 30px;
+    // margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+button.cancel {
+    margin-left: 25px;
+}
+
+.container {
+    margin-top: 100px;
+    margin-left:200px; 
+    margin-right:auto;
+    display: flex;
+    flex-direction: column;
+}
+.container > * {
+    // width: 50%;
+}

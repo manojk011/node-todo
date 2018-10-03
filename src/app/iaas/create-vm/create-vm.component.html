@@ -1,0 +1,23 @@
+<div>
+    <mat-form-field class="addMarginFromTop"> 
+      <!-- VM Host Name: -->
+      <input matInput placeholder="VM Host Name" [(ngModel)]="enteredName">
+      <!-- <mat-hint align="start"><strong>a-z, 0-9, and '-' only</strong> </mat-hint> -->
+      <!-- <mat-error *ngIf="hostName.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+  
+    <mat-form-field> 
+      <mat-select placeholder="VM Size: " [(ngModel)]="selectedValue">
+        <mat-option *ngFor="let size of sizes" [value]=size> 
+          {{size}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div>
+  <button mat-raised-button (click)="submit()"> Submit </button>
+  <!-- <button mat-raised-button routerLink="/lbaas" class="submit"> Submit </button>   -->
+  <!-- <button mat-raised-button (click)="cancel()"> Cancel </button> -->
+  <button mat-raised-button routerLink="/iaas" class="cancel"> Cancel </button>
+</div>

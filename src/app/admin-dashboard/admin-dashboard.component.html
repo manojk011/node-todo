@@ -1,0 +1,58 @@
+<div>
+    <h1>Admin Dashboard</h1>
+    <h2>Inbox - Users waiting to be Onboarded</h2>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="NUID">
+      <mat-header-cell *matHeaderCellDef> NUID </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.nuid}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.name}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Org">
+      <mat-header-cell *matHeaderCellDef> Org </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata, let i = index"> 
+          <!-- new user -->
+          <ng-template [ngIf]="mockdata.newUser">
+            <button *ngIf="noOrgSelected" mat-button color="primary" (click)="openAddOrgDialog()">Add Org</button>
+            <div *ngIf="!noOrgSelected"> {{selectedOrg}} </div>
+            <!-- <div *ngIf="!noOrgSelected"> {{mockdata[i].org}} </div> -->
+          </ng-template>
+          <!-- <button *ngIf="mockdata.newUser" mat-button color="primary" (click)="openAddOrgDialog()">Add Org</button> -->
+          <!-- <div *ngIf="!noOrgSelected"> {{selectedOrg}} </div> -->
+
+          <!-- not new user -->
+          <div *ngIf="!mockdata.newUser"> {{mockdata.org}} </div>
+          <!-- <div *ngIf="!noOrgSelected && !mockdata.newUser"> {{mockdata.org}} </div> -->
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Group">
+      <mat-header-cell *matHeaderCellDef> Group </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> 
+          <!-- new user -->
+          <ng-template [ngIf]="mockdata.newUser">
+            <button *ngIf="noGroupSelected" mat-button color="primary" (click)="openAddGroupDialog()">Add Group</button>
+            <div *ngIf="!noGroupSelected"> {{selectedGroup}} </div>
+          </ng-template>
+
+          <!-- not new user -->
+          <div *ngIf="!mockdata.newUser"> {{mockdata.group}} </div>
+
+        <!-- <button *ngIf="noGroupSelected && mockdata.newUser" mat-button color="primary" (click)="openAddGroupDialog()">Add Group</button>
+        <div *ngIf="!noGroupSelected"> {{selectedGroup}} </div> -->
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+    </mat-table>
+
+<button mat-raised-button class="org-setup" routerLink="/org-setup"> Org Setup </button>
+
+</div>

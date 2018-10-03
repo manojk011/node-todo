@@ -1,0 +1,77 @@
+<mat-toolbar-row color="primary" class="mat-elevation-z6" >
+<!-- <mat-toolbar-row color="primary" class="mat-elevation-z6" [ngClass]="{'invisibleMenu': !isUserLoggedIn}">  -->
+  <button mat-icon-button>
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+    Menu
+      <!-- buttons on the right -->
+        <div fxFlex fxLayoutAlign="end">
+          <button mat-icon-button >
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+          
+          <button mat-icon-button>
+            <mat-icon>settings</mat-icon>
+          </button>
+  
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>person</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()" routerLink='/'>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+
+</mat-toolbar-row>
+
+<section class="container" fxLayout="column" fxLayoutAlign="start stretch">
+<mat-sidenav-container color="accent" fxFlex >
+
+<mat-sidenav #sidenav mode="side" opened class="mat-elevation-z6" >
+    <!-- <mat-list>
+      <mat-list-item *ngFor="let link of links" href="..." > {{ link.routerURL }} </mat-list-item>
+    </mat-list> -->
+
+     <ul>
+        <li class="text">
+          <a class="noUnderline" routerLink="/dashboard"> 
+            <i class="material-icons">dashboard</i>
+            Dashboard
+          </a>
+        </li>
+
+        <li class="text">
+            <a class="noUnderline" routerLink="/iaas"> 
+              <img src="../../assets/iaas.png">
+              Infrastructure as a Service 
+              <!-- (IaaS) -->
+            </a>
+        </li>
+
+        <li class="text">
+            <a class="noUnderline" routerLink="/dbaas">
+              <div class="text">
+                  <img src="../../assets/dbaas.png"> 
+                  Database as a Service 
+                  <!-- (DbaaS) -->
+              </div>
+            </a>
+        </li>
+
+        <li class="text">
+            <a class="noUnderline" routerLink="/lbaas"> 
+              <img src="../../assets/lbaas.png">
+              Load Balancer as a Service 
+              <!-- (LbaaS) -->
+            </a>
+        </li>
+      </ul>
+</mat-sidenav>
+
+<router-outlet></router-outlet>
+
+</mat-sidenav-container>
+
+</section>

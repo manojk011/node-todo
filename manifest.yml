@@ -1,0 +1,12 @@
+applications:
+- name: consumer-portal
+  random-route: true
+  memory: 256M
+  instances: 1
+  buildpack:  sdk-for-nodejs
+  command: npm start
+  health-check-type: http
+  timeout: 180
+  env:
+    LOGLEVEL: DEBUG
+

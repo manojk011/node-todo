@@ -1,0 +1,30 @@
+<div>
+    <h1>DBaaS Request Service</h1>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="Request ID">
+      <mat-header-cell *matHeaderCellDef> Request ID </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.id}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.description}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.status}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+    </mat-table>
+
+    <!-- Create New CDB, Create New PDB, Clone CDB, Clone PDB -->
+    <button mat-raised-button routerLink="/create-vm">Create New CDB</button>
+    <button mat-raised-button routerLink="/create-vm">Create New PDB</button>
+    <button mat-raised-button routerLink="/create-vm">Clone CDB</button>
+    <button mat-raised-button routerLink="/create-vm">Clone PDB</button>
+  </div>

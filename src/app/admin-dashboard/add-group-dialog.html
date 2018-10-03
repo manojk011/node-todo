@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Select Group</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+    <mat-select [(ngModel)]="choosenEmoji" (ngModelChange)="selectedOption()">
+        <mat-option *ngFor="let emoji of emojis" [value]="emoji">
+            {{ emoji }}
+        </mat-option>
+    </mat-select>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="confirmSelection()" color="primary">Ok</button>
+</div>

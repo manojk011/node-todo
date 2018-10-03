@@ -1,0 +1,46 @@
+button {
+    font-size: 20px;
+    margin-left: 560px;
+    margin-top: 40px;
+    margin-right: auto;
+
+}
+
+img {
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    margin-left: 10px;
+}
+
+mat-form-field {
+    margin-left:auto; 
+    margin-right:auto;
+    margin-top: 20px;
+}
+
+mat-checkbox {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+h1, h2 {
+    margin: auto;
+    text-align: center;
+}
+
+.angContainer {
+    // margin-top: 100px;
+    margin-left:auto; 
+    margin-right:auto;
+    display: flex;
+    flex-direction: column;
+}
+.angContainer > * {
+    width: 30%;
+}

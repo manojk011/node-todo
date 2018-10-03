@@ -1,0 +1,25 @@
+<div>
+    <h1>Org Setup</h1>
+    <h2>Org List</h2>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="Org ID">
+      <mat-header-cell *matHeaderCellDef> Org ID </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.orgID}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Org Name">
+      <mat-header-cell *matHeaderCellDef> Org Name </mat-header-cell>
+      <mat-cell *matCellDef="let mockdata"> {{mockdata.orgName}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+    </mat-table>
+
+    <button mat-raised-button routerLink="/new-org" class="cancel"> New Org </button>
+    <button mat-raised-button>Edit Org</button>
+    <button mat-raised-button>Delete Org</button>
+    <button mat-raised-button routerLink="/admin-dashboard" class="cancel"> Cancel </button>
+</div>

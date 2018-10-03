@@ -1,0 +1,57 @@
+li, ul {
+  //display: inline;
+  list-style-type: none;
+}
+
+li:hover {
+  background-color: #519fff;
+}
+
+i {
+  // padding-left: 10px;
+  // padding-right: 10px;
+  font-size:50px;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+}
+
+.noUnderline {
+  text-decoration: none;
+  color:black;
+}
+
+.invisibleMenu {
+  visibility: hidden;
+}
+
+.sideNavDisplayNone {
+  display: none;
+}
+
+// mat-menu-item {
+//   margin-top: 100px;
+// }
+
+.text {
+  font-size: 20px;
+  // margin-top: 100px;
+}
+  
+.container {
+  height: 100vh; // emmet h100vh
+}
+  
+// mat-toolbar {
+//     // z-index: 10; // emmet z10
+//   width: 20vw; 
+// }
+
+mat-sidenav {
+  width: 25vw; 
+  // height: 100vw;
+  // background-color: pink;
+}

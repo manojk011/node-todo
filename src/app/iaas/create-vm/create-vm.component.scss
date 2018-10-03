@@ -1,0 +1,33 @@
+// @import '~@angular/material/theming';
+
+// @import "~../../../styles.scss";
+// @include angular-material-theme($kp-app-theme);
+
+button {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-left: 150px;
+    margin-right: auto;
+}
+
+.addMarginFromTop {
+    margin-top: 150px;
+}
+
+mat-form-field {
+    width: 75%;
+    margin-top: 10px;
+    margin-left: 150px;
+    margin-right:auto;
+}
+
+.container {
+    margin-top: 100px;
+    margin-left:auto; 
+    margin-right:auto;
+    display: flex;
+    flex-direction: column;
+}
+.container > * {
+    width: 50%;
+}

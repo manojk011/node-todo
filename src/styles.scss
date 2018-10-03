@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/_theming.scss"; 
+// @import '~@angular/material/theming';
+
+@include mat-core(); 
+
+$kp-brand: (
+    50 : #e0eff6,
+    100 : #b3d7e8,
+    200 : #80bcd9,
+    300 : #4da1ca,
+    400 : #268cbe,
+    500 : #0078b3,
+    600 : #0070ac,
+    700 : #0065a3,
+    800 : #005b9a,
+    900 : #00488b,
+    A100 : #b7d7ff,
+    A200 : #84bbff,
+    A400 : #519fff,
+    A700 : #3791ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$kp-app-primary: mat-palette($kp-brand, 500);
+$kp-app-accent:  mat-palette($kp-brand, A200, A100, A400);
+
+/* // The warn palette is optional (defaults to red). */
+$kp-app-warn:    mat-palette($mat-red);
+
+/* // Create the theme object (a Sass map containing all of the palettes). */
+$kp-app-theme: mat-light-theme($kp-app-primary, $kp-app-accent, $kp-app-warn);
+
+/* // Include theme styles for core and each component used in your app. */
+/* // Alternatively, you can import and @include the theme mixins for each component */
+/* // that you are using. */
+@include angular-material-theme($kp-app-theme);
+
+//Export Theme colors
+$primary: mat-color($kp-app-primary);
+$accent: mat-color($kp-app-accent);
+$warn: mat-color($kp-app-warn);

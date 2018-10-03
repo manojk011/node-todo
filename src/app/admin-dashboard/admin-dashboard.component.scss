@@ -1,0 +1,23 @@
+h1, h2 {
+    text-align: center;
+}
+
+mat-table {
+    width: 80%;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.org-setup {
+    // margin-top: 20px;
+    margin-top: 30px;
+    margin-left: 120px;
+    margin-right: auto;
+    font-size: 20px;
+    font-style: none;
+}
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+ }

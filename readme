@@ -1,0 +1,5 @@
+Run the below commands to deploy the angular app
+
+npm install
+ng build
+npm start
