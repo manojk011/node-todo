@@ -26,7 +26,7 @@
           <!-- <div *ngIf="!noOrgSelected"> {{selectedOrg}} </div> -->
 
           <!-- not new user -->
-          <div *ngIf="!mockdata.newUser"> {{mockdata.org}} </div>
+          <div *ngIf="!mockdata.newUser"> {{mockdata.user_org}} </div>
           <!-- <div *ngIf="!noOrgSelected && !mockdata.newUser"> {{mockdata.org}} </div> -->
       </mat-cell>
     </ng-container>
@@ -53,6 +53,6 @@
   
     </mat-table>
 
-<!-- <button mat-raised-button class="org-setup" routerLink="/org-setup"> Org Setup </button> -->
+<button mat-raised-button class="org-setup" routerLink="/org-setup"> Org Setup </button>
 
 </div>

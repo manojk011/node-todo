@@ -5,7 +5,7 @@ import { $ } from 'protractor';
 export interface Inbox {
   nuid: string;
   name: string;
-  org: string;
+  user_org: string;
   group: string;
   newUser: boolean;
 }
@@ -16,9 +16,8 @@ export interface DialogData {
 }
 
 const MOCK_DATA: Inbox[] = [
-  {nuid: "X12345", name: 'Anjana', org: '', group: '', newUser: true},
-  {nuid: "Y67890", name: 'Sonali', org: 'CTO', group: 'STS', newUser: false},
-  {nuid: "Z11235", name: 'Chandra', org: '', group: '', newUser: true}
+  {nuid: "Y67890", name: 'Sonali', user_org: 'CTO', group: 'STS', newUser: false},
+  {nuid: "X12345", name: 'Anjana', user_org: '', group: '', newUser: true},
 ];
 
 @Component({
@@ -43,7 +42,7 @@ export class AdminDashboardComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       this.selectedOrg = `${result}`;
       this.noOrgSelected = false;
-      MOCK_DATA[this.index].org = this.selectedOrg;
+      MOCK_DATA[this.index].user_org = this.selectedOrg;
     });
   }
 
