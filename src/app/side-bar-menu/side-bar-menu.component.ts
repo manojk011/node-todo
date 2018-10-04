@@ -21,6 +21,7 @@ const links: Links[] = [
 const adminLinks: Links[] = [
   { routerURL: "admin-dashboard", title: "Dashboard" },
   { routerURL: "org-set-up" , title: "Org Set Up"},
+  { routerURL: "item" , title: "Create TShirt"},
 ];
 
 @Component({
@@ -33,7 +34,7 @@ export class SideBarMenuComponent implements OnInit {
 
   @Input() public isUserLoggedIn: boolean;
   // @Input() public isNewUser: boolean = this.loginComponent.isNewUser;
-  //isNewUser = false;
+  public admin:boolean = false;
 
 
 

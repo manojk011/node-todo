@@ -18,8 +18,10 @@
   
     </mat-table>
 
-    <button mat-raised-button routerLink="/new-org" class="cancel"> New Org </button>
+    <button mat-raised-button [routerLink]="['new-org']" class="cancel"> New Org </button>
     <button mat-raised-button>Edit Org</button>
     <button mat-raised-button>Delete Org</button>
-    <button mat-raised-button routerLink="/admin-dashboard" class="cancel"> Cancel </button>
+
+    <router-outlet></router-outlet>
+    <!-- <button mat-raised-button [routerLink]="['admin-dashboard']" class="cancel"> Cancel </button> -->
 </div>

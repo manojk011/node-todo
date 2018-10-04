@@ -36,11 +36,9 @@ const MOCK_DATA: DataResponse[] = [
     selector: 'item', 
     templateUrl: './item.component.html', 
     styleUrls: ['./item.component.scss'],
-    // providers: [Observable]
 }) 
 
 export class ItemComponent  implements OnInit { 
-    // public sizes = ["Select Size"];
     public sizes = [];
     public cpuArray = [];
     public memoryArray = [];
@@ -56,16 +54,15 @@ export class ItemComponent  implements OnInit {
     public newItem: Item; 
     counter: 1; 
     isDB: boolean; 
+    isDBGlobal: boolean; 
     api = 'https://iaasapi-patient-okapi.kpsj001.us-west.mybluemix.net/iaas/t_size/vmware';
-    url = 'http://localhost:3000/items'; //mock db
+    // url = 'http://localhost:3000/items'; //mock db
+    url = 'http://localhost:3002/items';
 
     displayedColumns: string[] = ['Entity', 'T-Shirt Size', 'Configuration'];
     dataSource = MOCK_DATA;
-    // dataSource = this.items;
-    // dataSource = this.itemService.ITEMS;
+
     subject = new BehaviorSubject(this.items);
-    //dataSource = new ItemComponent(this.itemService, this.http);
-    // dataSource = new ItemComponent( this.http);
 
 // constructor(private http: HttpClient)  { 
 constructor(private itemService: ItemService, private http: HttpClient, private router: Router)  { 
@@ -138,46 +135,10 @@ getCPU(){
   }
 
   update() {
-      console.log(this.entity + " is selected");
-//     var currentIndex: number;
-
-//     console.log("current entity selected: " + this.entity);
-//     for (var i = 0; i < this.items.length; i++) {
-//         if (this.items[i].entity === "db") {
-//             this.isDB = true;
-//         }
-//         else {
-//             this.isDB = false;
-//         }
-        
-//         /*if (this.items[i].tshirtSize === this.sizes[i]) {
-//             currentIndex = i;
-//         }*/
-
-//     // if (this.items[0].entity === "db") {
-//     //     this.isDB = true;
-//     // }
-//     // else {
-//     //     this.isDB = false;
-//     // }
-
-
-//       for (var i = 0; i < this.sizes.length; i++ ) {
-//         if (this.tshirtSize === this.sizes[i]) {
-//         if (this.items[i].tshirtSize === this.sizes[i]) {
-//             currentIndex = i;
-//         }
-//     }
-// }
-//     this.items[i].cpu = this.cpuArray[currentIndex];
-//     console.log("matching cpu: " + this.items[i].cpu);
-//       }
-
-//     console.log("current size selected: " + this.tshirtSize);
-
+    console.log(this.entity + " is selected");
 
     //start
-    console.log("current entity selected: " + this.entity);
+    // console.log("current entity selected: " + this.entity);
     if (this.entity === "db") {
         this.isDB = true;
     }
@@ -185,7 +146,7 @@ getCPU(){
         this.isDB = false;
     }
 
-    console.log("current size selected: " + this.tshirtSize);
+    // console.log("current size selected: " + this.tshirtSize);
       var currentIndex: number;
       for (var i = 0; i < this.sizes.length; i++ ) {
         if (this.tshirtSize === this.sizes[i]) {
@@ -193,23 +154,29 @@ getCPU(){
         }
       }
       this.cpu = this.cpuArray[currentIndex];
-      console.log("matching cpu: " + this.cpu);
-      this.memory = this.memoryArray[currentIndex];
-      console.log("matching memory: " + this.memory);
-      this.disk = this.storageArray[currentIndex];
-      console.log("matching disk: " + this.disk);
-    //end
-
-    //   this.cpu = this.cpuArray[currentIndex];
     //   console.log("matching cpu: " + this.cpu);
-    //   this.memory = this.memoryArray[currentIndex];
+      this.memory = this.memoryArray[currentIndex];
     //   console.log("matching memory: " + this.memory);
-    //   this.disk = this.storageArray[currentIndex];
+      this.disk = this.storageArray[currentIndex];
     //   console.log("matching disk: " + this.disk);
+    //end
 
   } //end update()
 
+  updateForm(i) {
+    var isDBForm: boolean = false; 
 
+    console.log("current entity selected: " + this.items[i].entity);
+    if (this.items[i].entity === "db") {
+        isDBForm = true;
+    }
+    else {
+        isDBForm = false;
+    }
+
+    this.isDBGlobal = isDBForm;
+    console.log("isDBForm " + isDBForm );
+  } 
 
 getItems(): void { 
     this.itemService.getItems() 
@@ -237,6 +204,8 @@ add(): void {
         }
     );
 
+    // this.isDBGlobal = false;
+
     // MOCK_DATA.push(this.newItem);
     // console.log(MOCK_DATA);
     // this.dataSource = new MatTableDataSource(MOCK_DATA);
@@ -256,22 +225,16 @@ submit(): void {
     for( var i=0; i < this.items.length; i++) {
         console.log(this.items[i]);
         this.http.post(this.url, { 
-            id: this.counter++, 
-            // entity: this.items[i].entity, 
-            entity: this.entity, 
-            // tshirtSize: this.items[i].tshirtSize, 
-            tshirtSize: this.tshirtSize,
-            // cpu: this.items[i].cpu, 
-            cpu: this.cpu, 
-            // memory: this.items[i].memory, 
-            memory: this.memory, 
-            // disk: this.items[i].disk 
-            disk: this.disk 
+            entity: this.items[i].entity, 
+            tshirtSize: this.items[i].tshirtSize, 
+            cpu: this.items[i].cpu, 
+            memory: this.items[i].memory, 
+            disk: this.items[i].disk 
         }  
         ) 
             .subscribe( 
                 result => { 
-                    console.log(result); 
+                    // console.log(result); 
                 }, 
                 err => { 
                     console.log('Error occured'); 
@@ -282,15 +245,6 @@ submit(): void {
     // this.router.navigate(['./']);
 } 
 
-// selectDB() { 
-//     this.isDB = true;
-//     return this.isDB; 
-// } 
-
-// selectServer(): void { 
-//     this.isDB = false; 
-// } 
-
 ngOnInit() { 
     this.getItems(); 
     this.getSizes();
@@ -298,6 +252,7 @@ ngOnInit() {
     this.getMemory();
     this.getStorage();
     this.isDB = false; 
+    // this.isDBForm = false;
 } 
 
 } 

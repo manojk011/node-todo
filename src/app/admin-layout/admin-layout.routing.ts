@@ -17,17 +17,22 @@ export const AdminLayoutRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   // { path: 'create-vm', component: CreateVmComponent },
-  // { path: 'item', component: ItemComponent },
+  { path: 'item', component: ItemComponent },
   { path: 'dbaas', component: DbaasComponent },
   { path: 'lbaas', component: LbaasComponent },
-  { path: 'org-setup', component: OrgSetupComponent },
+  {
+    path: 'org-setup', component: OrgSetupComponent,
+    children: [
+      { path: 'new-org', component: NewOrgComponent },
+    ]
+  },
   // { path: 'on-board-user', component: OnBoardUserComponent },
-  { path: 'new-org', component: NewOrgComponent },
+  // { path: 'new-org', component: NewOrgComponent },
   { 
     path: 'iaas', component: IaasComponent,
     children: [
       { path: 'create-vm', component: CreateVmComponent },
-      { path: 'item', component: ItemComponent },
+      // { path: 'item', component: ItemComponent },
     ]
   },
 

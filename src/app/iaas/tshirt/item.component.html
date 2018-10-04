@@ -1,4 +1,50 @@
-<!-- <table class="container"> 
+<h1>TShirt Sizes</h1>
+
+<div class="container">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8  ">
+      <ng-container matColumnDef="Entity">
+        <mat-header-cell *matHeaderCellDef> Entity </mat-header-cell>
+        <mat-cell *matCellDef="let item"> 
+          <mat-select [(ngModel)]="entity" (ngModelChange)="update()">
+            <mat-option value="server"> 001 - Server </mat-option>
+            <mat-option value="db"> 002 - DB </mat-option>
+          </mat-select>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="T-Shirt Size">
+        <mat-header-cell *matHeaderCellDef> T-Shirt Size </mat-header-cell>
+        <mat-cell *matCellDef="let item"> 
+          <mat-select placeholder="Select Size" [(ngModel)]="tshirtSize" (ngModelChange)="update()"> 
+            <mat-option *ngFor="let size of sizes" [value]=size>
+                {{size}}
+            </mat-option>
+          </mat-select>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="Configuration">
+        <mat-header-cell *matHeaderCellDef> Configuration </mat-header-cell>
+        <mat-cell *matCellDef="let item"> 
+          <form>
+            <div> CPU Count: {{cpu}}  </div>
+            <div> Memory: {{memory}} </div>
+            <div *ngIf="isDB"> Disk: {{disk}} </div> 
+          </form>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <!-- <button mat-raised-button (click)="submit()">Submit</button>
+    <button mat-raised-button routerLink="/iaas"> Cancel </button>
+    <button mat-raised-button style="margin-left: 180px;" (click)="add()">Add New</button> -->
+  
+  </div>
+
+<table class="container"> 
         <tr>
         <th>Entity </th>  
         <th>T-Shirt Size </th>
@@ -7,28 +53,30 @@
         </tr>
         <tr *ngFor="let item of items; let i = index">
           <td>
-            <select [(ngModel)]="entity" (ngModelChange)="update()" name="entity-{{i}}">
-              <option value="server">001 - Server</option>
-              <option value="db">002 - DB</option>
+            <select [(ngModel)]="item.entity" (ngModelChange)="updateForm(i)" name="entity-{{i}}">
+              <option [value]="['server']">001 - Server</option>
+              <option [value]="['db']">002 - DB</option>
             </select>  
           </td>
           <td> 
-            <!- - <select [(ngModel)]="item.tshirtSize" (ngModelChange)="updateCPU()" >  - ->
-            <select [(ngModel)]="tshirtSize" (ngModelChange)="update()" >  
+            <!-- <select [(ngModel)]="item.tshirtSize" (ngModelChange)="update()" > 
               <option *ngFor="let size of sizes" [value]=size>
                 {{size}}
               </option>
-            </select>
+            </select> -->
+            <!-- <input [(ngModel)]]="item.tshirtSize"> -->
+            <div> <input [(ngModel)]="item.tshirtSize" > </div>
           </td>
       
           <td>
-          <!- - <div> CPU Count: <input [(ngModel)]="item.cpu" > </div> -- >
-          <div> CPU Count: <input disabled [(ngModel)]="cpu" placeholder="{{cpu}}" >  </div>
-          <!- - <div [(ngModel)]="item.cpu"> CPU Count: {{cpuArray[0]}} </div> -- >
-          <!- - i get a stupid error ^ -- >
-
-          <div> Memory: <input disabled [(ngModel)]="memory" placeholder="{{memory}}" >  </div>
-          <div *ngIf="isDB"> Disk: <input disabled [(ngModel)]="disk" placeholder="{{disk}}"> </div>
+          <div> CPU Count: <input [(ngModel)]="item.cpu" > </div>
+          <div> Memory: <input [(ngModel)]="item.memory" >  </div>
+          
+          <!-- <div *ngIf="isDBForm"> Disk: <input [(ngModel)]="item.disk"> </div> -->
+            <ng-template [ngIf]="isDBGlobal">
+                <div> Disk: <input [(ngModel)]="item.disk"> </div>
+            </ng-template>
+          <!-- <div *ngIf="!isDBForm"> Disk: <input disabled [(ngModel)]="item.disk" placeholder="{{disk}}"> </div> -->
           </td>
       
           <td> 
@@ -39,65 +87,9 @@
         </tr>   
         
         <button mat-raised-button (click)="submit()">Submit</button>
-        <button mat-raised-button class="cancel" routerLink="/iaas"> Cancel </button> 
+        <button mat-raised-button class="cancel" [routerLink]="['iaas']"> Cancel </button> 
         <button mat-raised-button style="margin-left: 180px;" (click)="add()">Add New</button> 
 
-</table> -->
+</table>
     
 
-<div class="container">
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8  ">
-
-    <ng-container matColumnDef="Entity">
-      <mat-header-cell *matHeaderCellDef> Entity </mat-header-cell>
-      <mat-cell *matCellDef="let item"> 
-        <mat-select [(ngModel)]="entity" (ngModelChange)="update()">
-          <mat-option value="server"> 001 - Server </mat-option>
-          <mat-option value="db"> 002 - DB </mat-option>
-        </mat-select>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="T-Shirt Size">
-      <mat-header-cell *matHeaderCellDef> T-Shirt Size </mat-header-cell>
-      <mat-cell *matCellDef="let item"> 
-        <mat-select placeholder="Select Size" [(ngModel)]="tshirtSize" (ngModelChange)="update()"> 
-          <mat-option *ngFor="let size of sizes" [value]=size>
-              {{size}}
-          </mat-option>
-        </mat-select>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Configuration">
-      <mat-header-cell *matHeaderCellDef> Configuration </mat-header-cell>
-      <mat-cell *matCellDef="let item"> 
-        <form>
-        <!-- <mat-form-field> -->
-          <!-- <input matInput [(ngModel)]="item.cpu" placeholder="CPU Count" name="cpu"> -->
-
-          <div> CPU Count: {{cpu}}  </div>
-          <div> Memory: {{memory}} </div>
-          <div *ngIf="isDB"> Disk: {{disk}} </div> 
-          <!-- <div> Memory: <input disabled [(ngModel)]="memory" placeholder="{{memory}}" >  </div> -->
-          <!-- <div *ngIf="isDB"> Disk: <input disabled [(ngModel)]="disk" placeholder="{{disk}}"> </div> -->
-
-        <!-- </mat-form-field> -->
-        <!-- <mat-form-field> -->
-          <!-- <input matInput [(ngModel)]="item.memory" placeholder="Memory" name="memory"> -->
-        <!-- </mat-form-field> -->
-        <!-- <mat-form-field> -->
-          <!-- <input matInput [(ngModel)]="item.disk" placeholder="Disk" name="disk"> -->
-        <!-- </mat-form-field> -->
-        </form>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
-  <button mat-raised-button (click)="submit()">Submit</button>
-  <button mat-raised-button routerLink="/iaas"> Cancel </button>
-
-</div>

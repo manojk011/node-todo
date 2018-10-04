@@ -34,6 +34,32 @@
       <mat-list-item *ngFor="let link of links" href="..." > {{ link.routerURL }} </mat-list-item>
     </mat-list> -->
 
+    <!-- Admin Side Menu -->
+    <ng-template [ngIf]="!admin" >
+      <ul>
+        <li class="text">
+          <a class="noUnderline" [routerLink]="['admin-dashboard']"> 
+            <i class="material-icons">dashboard</i>
+            Dashboard
+          </a>
+        </li>
+        <li class="text">
+            <a class="noUnderline" [routerLink]="['org-setup']"> 
+              <i class="material-icons">settings_system_daydream</i>
+              Org Setup
+            </a>
+        </li>
+        <li class="text">
+          <a class="noUnderline" [routerLink]="['item']"> 
+            <img src="../../assets/iaas.png">
+            Create TShirt
+          </a>
+        </li>
+      </ul>
+    </ng-template>
+
+    <!-- Regular User Side Menu -->
+    <ng-template [ngIf]="admin" >
      <ul>
         <li class="text">
           <a class="noUnderline" routerLink="/dashboard"> 
@@ -68,6 +94,8 @@
             </a>
         </li>
       </ul>
+    </ng-template>
+
 </mat-sidenav>
 
 <router-outlet></router-outlet>

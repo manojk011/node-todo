@@ -151,7 +151,7 @@ app.get('*', (req, res) => res.sendFile(path.join(__dirname),function(err) {
 ));
 
 
-fs.createReadStream( 'node_modules/tmp/dir' );
+// fs.createReadStream( 'node_modules/tmp/dir' );
 
 // app.get('*', routes.index);
 const server = http.createServer(app);

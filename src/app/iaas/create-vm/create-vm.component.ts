@@ -19,15 +19,15 @@ export class CreateVmComponent implements OnInit {
   public sizes = [];
   enteredName: string; //what user typed for VM Name
   selectedValue: string;  //what option the user clicks on VM Size drop down menu
-  url = 'https://iaasapi-patient-okapi.kpsj001.us-west.mybluemix.net/iaas/t_size/vmware';
-  // postUrl = '../../mockVM.json';
+  api = 'https://iaasapi-patient-okapi.kpsj001.us-west.mybluemix.net/iaas/t_size/vmware';
+  url = 'http://localhost:3002/items'; //mock db
   
   // getData(): Observable<any> {
   //   return this.http.get(this.url).map(res => res.json());
   // }
 
   getData(): Observable<CreateVM[]>{
-    return this.http.get<CreateVM[]>(this.url);
+    return this.http.get<CreateVM[]>(this.api);
   }
 
   getSizes() {
@@ -39,8 +39,6 @@ export class CreateVmComponent implements OnInit {
         console.log(this.sizes);
       });
   }
-
-
 
   submit(): void {
     this.http.post(this.url, {
