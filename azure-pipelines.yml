@@ -18,7 +18,11 @@ jobs:
     inputs:
       versionSpec: '12.x'
     displayName: 'Install Node.js'
-
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: ls -lart
+      
   - script: |
       npm install -g @angular/cli@latest  
       npm install
