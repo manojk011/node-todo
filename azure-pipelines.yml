@@ -24,6 +24,7 @@ jobs:
       script: ls -lart
       
   - script: |
+      ls -lart
       npm install -g @angular/cli@latest  
       npm install
       npm audit fix
