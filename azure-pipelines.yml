@@ -20,7 +20,7 @@ jobs:
     displayName: 'Install Node.js'
 
   - script: |
-      npm install -g @angular/cli
+      npm install -g @angular/cli@latest  
       npm install
       ng build --prod
 
