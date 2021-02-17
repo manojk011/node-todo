@@ -18,22 +18,27 @@ jobs:
     inputs:
       versionSpec: '12.x'
     displayName: 'Install Node.js'
+
+  
+  - task: Npm@1  
+    displayName: 'Angular CLI'  
+    inputs:  
+      command: custom  
+      verbose: false  
+      customCommand: 'install @angular/cli@7.3.1'    
   
   - task: Npm@1
     displayName: 'npm install'
     inputs:
       command: install
-
-  - task: Npm@1
-    displayName: 'npm install'
-    inputs:
-      command: install -g @angular/cli@latest
       
-  - task: Npm@1
-    displayName: 'Build Angular'
-    inputs:
-      command: custom
-      customCommand: run build -- --prod
+- task: Npm@1  
+  displayName: Build  
+  inputs:  
+    command: custom  
+    verbose: false  
+    customCommand: 'run build'
+    
 #   - script: |
 #       ls -lart
 #       npm install -g @angular/cli@latest  
