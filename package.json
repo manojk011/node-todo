@@ -7,7 +7,7 @@
    "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build"
+    "build": "ng build --prod"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
