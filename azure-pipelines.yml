@@ -26,7 +26,10 @@ jobs:
   - script: |
       npm install -g @angular/cli@latest  
       npm install
+      npm audit fix
       ng build --prod
+    displayName: 'Build step'
+    workingDirectory: $(Agent.BuildDirectory)
 
   # - script: |
   #     npm pack
