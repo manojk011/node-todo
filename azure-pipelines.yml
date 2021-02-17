@@ -51,7 +51,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '<Azure service connection>'
+    azureSubscription: 'node-todo-connection'
     appType: webAppLinux
     appName: 'mktestapps'
     package: $(System.DefaultWorkingDirectory)/*.zip  
