@@ -21,16 +21,21 @@ jobs:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: ls -lart
-      
-  - script: |
-      ls -lart
-      npm install -g @angular/cli@latest  
-      npm install
-      npm audit fix
-      ng build --prod
-    displayName: 'Build step'
-    workingDirectory: $(Agent.BuildDirectory)
+      script:  |
+        ls -lart
+        npm install -g @angular/cli@latest  
+        npm install
+        npm audit fix
+        ng build --prod
+      displayName: 'Build'
+#   - script: |
+#       ls -lart
+#       npm install -g @angular/cli@latest  
+#       npm install
+#       npm audit fix
+#       ng build --prod
+#     displayName: 'Build step'
+#     workingDirectory: $(Agent.BuildDirectory)
 
   # - script: |
   #     npm pack
