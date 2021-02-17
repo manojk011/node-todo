@@ -32,12 +32,12 @@ jobs:
     inputs:
       command: install
       
-- task: Npm@1  
-  displayName: Build  
-  inputs:  
-    command: custom  
-    verbose: false  
-    customCommand: 'run build'
+  - task: Npm@1  
+    displayName: Build  
+    inputs:  
+      command: custom  
+      verbose: false  
+      customCommand: 'run build'
     
 #   - script: |
 #       ls -lart
