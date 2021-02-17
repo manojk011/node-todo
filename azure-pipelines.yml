@@ -22,7 +22,7 @@ jobs:
   - task: Npm@1
     displayName: 'npm install'
     inputs:
-      command: install && npm install -g @angular/cli@latest
+      command: install
 
   - task: Npm@1
     displayName: 'npm install'
