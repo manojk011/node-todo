@@ -36,7 +36,8 @@ jobs:
   - task: Npm@1
     displayName: 'npm audit'
     inputs:
-      command: audit fix --force
+      command: custom      
+      customCommand: 'audit fix --force'
       
   - task: Npm@1  
     displayName: Build  
