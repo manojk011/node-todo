@@ -1,0 +1,100 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+# pool:
+#   vmImage: ubuntu-default
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '12.x'
+    displayName: 'Install Node.js'
+
+  
+  - task: Npm@1  
+    displayName: 'Angular CLI'  
+    inputs:  
+      command: custom  
+      verbose: false  
+      customCommand: 'install -g  @angular/cli@latest'    
+  
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      workingDirectory: $(System.DefaultWorkingDirectory)
+      command: install
+  
+  - task: Npm@1
+    displayName: 'npm audit'
+    inputs:
+      command: custom      
+      customCommand: 'audit fix --force'
+      
+  - task: Npm@1  
+    displayName: Build  
+    inputs:
+      workingDirectory: $(System.DefaultWorkingDirectory)
+      command: custom  
+      verbose: false  
+      customCommand: 'run build'
+    
+#   - script: |
+#       ls -lart
+#       npm install -g @angular/cli@latest  
+#       npm install
+#       npm audit fix
+#       ng build --prod
+#     displayName: 'Build step'
+#     workingDirectory: $(Agent.BuildDirectory)
+
+  # - script: |
+  #     npm pack
+  #   displayName: 'Package for npm release'
+
+  # - task: CopyFiles@2
+  #   inputs:
+  #     sourceFolder: '$(Build.SourcesDirectory)'
+  #     contents: '*.tgz' 
+  #     targetFolder: $(Build.ArtifactStagingDirectory)/npm
+  #   displayName: 'Copy npm package'
+
+  # - task: CopyFiles@2
+  #   inputs:
+  #     sourceFolder: '$(Build.SourcesDirectory)'
+  #     contents: 'package.json' 
+  #     targetFolder: $(Build.ArtifactStagingDirectory)/npm
+  #   displayName: 'Copy package.json'
+
+  # - task: PublishBuildArtifacts@1
+  #   inputs:
+  #     pathtoPublish: '$(Build.ArtifactStagingDirectory)/npm'
+  #     artifactName: npm
+  #   displayName: 'Publish npm artifact'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+      includeRootFolder: false
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'node-todo-connection'
+      appType: webAppLinux
+      appName: 'mktestapps'
+      package: $(System.DefaultWorkingDirectory)/*.zip  
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
