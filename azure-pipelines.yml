@@ -97,7 +97,7 @@ jobs:
       azureSubscription: 'node-todo-connection'
       appType: webAppLinux
       appName: 'mktestapps'
-      package: $(System.DefaultWorkingDirectory)/*.zip  
+      package: $(System.DefaultWorkingDirectory)/**/*.zip  
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
