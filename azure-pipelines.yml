@@ -91,13 +91,19 @@ jobs:
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
       includeRootFolder: false
+  - task: ArchiveFiles@2
+    inputs:
+      includeRootFolder: true 
+      archiveType: 'zip' # Options: zip, 7z, tar, wim
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
+      replaceExistingArchive: true 
 
   - task: AzureWebApp@1
     inputs:
       azureSubscription: 'node-todo-connection'
       appType: webAppLinux
       appName: 'mktestapps'
-      package: $(System.DefaultWorkingDirectory)/**/*.zip  
+      package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
