@@ -25,16 +25,18 @@ jobs:
     inputs:  
       command: custom  
       verbose: false  
-      customCommand: 'install @angular/cli@7.3.1'    
+      customCommand: 'install -g  @angular/cli@7.3.1'    
   
   - task: Npm@1
     displayName: 'npm install'
     inputs:
+      workingDirectory: $(System.DefaultWorkingDirectory)
       command: install
       
   - task: Npm@1  
     displayName: Build  
-    inputs:  
+    inputs:
+      workingDirectory: $(System.DefaultWorkingDirectory)
       command: custom  
       verbose: false  
       customCommand: 'run build'
