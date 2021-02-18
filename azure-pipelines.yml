@@ -33,11 +33,11 @@ jobs:
       workingDirectory: $(System.DefaultWorkingDirectory)
       command: install
   
-  - task: Npm@1
-    displayName: 'npm audit'
-    inputs:
-      command: custom      
-      customCommand: 'audit fix --force'
+#   - task: Npm@1
+#     displayName: 'npm audit'
+#     inputs:
+#       command: custom      
+#       customCommand: 'audit fix --force'
       
   - task: Npm@1  
     displayName: Build  
