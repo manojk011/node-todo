@@ -25,13 +25,18 @@ jobs:
     inputs:  
       command: custom  
       verbose: false  
-      customCommand: 'install -g  @angular/cli@7.3.1'    
+      customCommand: 'install -g  @angular/cli@latest'    
   
   - task: Npm@1
     displayName: 'npm install'
     inputs:
       workingDirectory: $(System.DefaultWorkingDirectory)
       command: install
+  
+  - task: Npm@1
+    displayName: 'npm audit'
+    inputs:
+      command: audit fix --force
       
   - task: Npm@1  
     displayName: Build  
